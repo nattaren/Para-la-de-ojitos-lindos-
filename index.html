@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Amor 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 15px;
+    background: linear-gradient(to bottom, #ffe6f0, #ffd1dc);
+    font-family: 'Georgia', cursive;
+    color: #7a1f3d;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 2.3em;
+    animation: latido 2s infinite;
+    margin-bottom: 10px;
+}
+
+.carta, .cartaFinal, .propuesta, #cartaAmor {
+    background: rgba(255,255,255,0.97);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(255,105,180,0.35);
+    margin-top: 20px;
+}
+
+p {
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+.contador {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff0f6;
+    border-radius: 18px;
+    font-size: 1.1em;
+    color: #b5174b;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 16px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255,77,109,0.4);
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.botonNo {
+    background: #cfa5b3;
+}
+
+#mensajeSecreto {
+    margin-top: 20px;
+    min-height: 70px;
+    font-size: 1.15em;
+    opacity: 0;
+    transition: opacity 1s;
+    color: #9b1c48;
+}
+
+.juego {
+    margin-top: 35px;
+    background: #ffe3ee;
+    padding: 20px;
+    border-radius: 22px;
+}
+
+.corazonJuego {
+    position: fixed;
+    top: -40px;
+    font-size: 32px;
+    animation: caer 4s linear;
+    cursor: pointer;
+}
+
+.corazon {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    animation: flotar 6s linear;
+}
+
+#cartaAmor {
+    display: none;
+    margin-top: 30px;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #7a1f3d;
+    text-align: left;
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+@keyframes flotar {
+    0% { bottom: -20px; opacity: 0; }
+    50% { opacity: 1; }
+    100% { bottom: 110%; opacity: 0; }
+}
+
+@keyframes caer {
+    0% { top: -40px; opacity: 0; }
+    20% { opacity: 1; }
+    100% { top: 110%; opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Mi Ojitos Lindos 💖</h1>
+
+<div class="carta">
+<p>
+    Ingrid Michell,<br><br>
+    Desde aquel <strong>14 de junio de 2025</strong>, mi vida empezó a sentirse más suave, más bonita, más tú 🌸
+</p>
+
+<div class="contador" id="contadorAmor"></div>
+
+<button onclick="siguienteMensaje()">💌 Toca aquí, amor</button>
+<div id="mensajeSecreto"></div>
+
+<div class="juego">
+    <h3>🎮 Mini juego del amor</h3>
+    <p>Llega a <strong>10 puntos</strong> 💖</p>
+    <p>Puntos: <strong><span id="puntos">0</span> / 10</strong></p>
+    <p id="premio"></p>
+    <button onclick="iniciarJuego()">💖 Empezar juego</button>
+</div>
+
+<button onclick="lluviaAmor()">🌸 Lluvia de amor</button>
+
+<div class="cartaFinal">
+    <h3>✉️ Para ti</h3>
+    <p>
+        Amarte me enseñó que el amor real no presiona, no lastima y no corre. Se queda, cuida y elige.<br><br>
+        Yo te elijo con respeto, paciencia y un corazón que quiere hacerlo mejor cada día.
+    </p>
+</div>
+
+<div class="propuesta">
+    <p>
+        Hoy, con el corazón abierto y sin exigencias, quiero preguntarte algo importante…<br><br>
+        <strong>
+        ¿Me concedes el honor de volver a intentarlo contigo?<br>
+        Prometo amarte con más calma, más hechos y el doble de amor.
+        </strong>
+    </p>
+
+    <button onclick="respuestaSi()">💖 Sí</button>
+    <button class="botonNo">🌸 No</button>
+</div>
+
+<div id="cartaAmor">
+<h3>💌 Carta de mi corazón</h3>
+<p>
+Mi amor Ingrid, hoy quiero abrirte mi alma como nunca antes...
+</p>
+</div>
+
+<script>
+const inicio = new Date(2025, 5, 14);
+let puntos = 0;
+let juegoActivo = false;
+
+function actualizarContador() {
+    const ahora = new Date();
+    const diff = ahora - inicio;
+    const dias = Math.floor(diff / 86400000);
+    const horas = Math.floor(diff / 3600000) % 24;
+    const minutos = Math.floor(diff / 60000) % 60;
+    const segundos = Math.floor(diff / 1000) % 60;
+    document.getElementById("contadorAmor").innerHTML =
+        `💘 ${dias} días, ${horas}h ${minutos}m ${segundos}s<br>amándote 💕`;
+}
+setInterval(actualizarContador, 1000);
+actualizarContador();
+
+const mensajes = [
+    "Desde que llegaste, todo se siente más bonito 💖",
+    "Tus ojitos lindos son mi lugar seguro 🌸",
+    "Amarte se siente en paz",
+    "Te pienso incluso en silencio",
+    "No prometo perfección, prometo amor sincero",
+    "Gracias por ser tú 🥹"
+];
+let i = 0;
+
+function siguienteMensaje() {
+    const div = document.getElementById("mensajeSecreto");
+    if (i < mensajes.length) {
+        div.style.opacity = 0;
+        setTimeout(() => {
+            div.innerHTML = mensajes[i];
+            div.style.opacity = 1;
+            i++;
+        }, 400);
+    }
+}
+
+function iniciarJuego() {
+    if (juegoActivo) return;
+    juegoActivo = true;
+    puntos = 0;
+    document.getElementById("puntos").innerText = puntos;
+    document.getElementById("premio").innerText = "";
+
+    const intervalo = setInterval(() => {
+        if (puntos >= 10) {
+            clearInterval(intervalo);
+            juegoActivo = false;
+            document.getElementById("premio").innerHTML =
+            "💘 Mi amor por ti se queda, te cuida y te elige siempre.";
+            return;
+        }
+        crearCorazon();
+    }, 900);
+}
+
+function crearCorazon() {
+    const c = document.createElement("div");
+    c.className = "corazonJuego";
+    c.innerHTML = "💖";
+    c.style.left = Math.random() * 85 + "vw";
+    c.onclick = () => {
+        puntos++;
+        document.getElementById("puntos").innerText = puntos;
+        c.remove();
+    };
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+}
+
+function lluviaAmor() {
+    for (let i = 0; i < 25; i++) {
+        const c = document.createElement("div");
+        c.className = "corazon";
+        c.innerHTML = "💖";
+        c.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 6000);
+    }
+}
+
+function respuestaSi() {
+    document.getElementById("cartaAmor").style.display = "block";
+}
+</script>
+
+</body>
+</html>
